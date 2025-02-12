@@ -13,7 +13,7 @@ test('get chessboard from n4', () => {
 
 test('get chessboard from n2', () => {
     const solutions = solveNQueens(2);
-    expect(solutions).toContainEqual([]);
+    expect(solutions).toEqual([]);
 });
 
 test('solutions for negative n', () => {

@@ -31,9 +31,13 @@ function isSafe(board, row, col, n) {
 }
 
 function solveNQueens(n) {
+    if (typeof n !== 'number' || n <= 0 || !Number.isInteger(n)) {
+        return [];
+    }
     const results = [];
         
     function solve(board, col) {
+        // col starts at 0, stops when reaches n
         if (col >= n) {
             const solution = board.map(row => row.join(''));
             results.push(solution);
@@ -43,20 +47,21 @@ function solveNQueens(n) {
         for (let i = 0; i < n; i++) {
             if (isSafe(board, i, col, n)) {
                 board[i][col] = '#';
+                // called recursively
                 solve(board, col + 1);
+                
                 board[i][col] = 'O';
             }
         }
     }
     
     const board = new Array(n).fill().map(() => new Array(n).fill('O'));
-    
     solve(board, 0);
     return results;
 }
 
 
-const solutions = solveNQueens(4);
+const solutions = solveNQueens(-2);
 console.log(solutions);
 
 module.exports = getNeighbourCases;
